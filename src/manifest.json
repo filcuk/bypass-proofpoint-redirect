@@ -1,10 +1,19 @@
 {
   "manifest_version": 2,
-  "name": "Skip Proofpoint Redirect",
+  "name": "Bypass Proofpoint Redirect",
   "version": "1.0.0",
-  "description": "Skip Proofpoint URL Defense redirections",
+  "description": "Bypass Proofpoint URL Defense redirection",
   "background": {
     "scripts": ["background.js"]
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
   },
   "permissions": [
     "webRequest",
