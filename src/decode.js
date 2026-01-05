@@ -5,7 +5,6 @@ import * as base64 from "base64-js";
 
 export function decodeV1(rewrittenUrl) {
   let target = new URL(rewrittenUrl).searchParams.get("u");
-  target = target.replaceAll("*20", "%20");
   target = decodeURIComponent(target);
   target = decodeHTML(target);
   return target;
@@ -14,7 +13,6 @@ export function decodeV1(rewrittenUrl) {
 export function decodeV2(rewrittenUrl) {
   let target = new URL(rewrittenUrl).searchParams.get("u");
   target = target.replaceAll("-", "%").replaceAll("_", "/");
-  target = target.replaceAll("*20", "%20");
   target = decodeURIComponent(target);
   target = decodeHTML(target);
   return target;
@@ -22,6 +20,7 @@ export function decodeV2(rewrittenUrl) {
 
 export function decodeV3(rewrittenUrl) {
   let [_, url, encBytes] = rewrittenUrl.match(/v3\/__(.+?)__;(.*?)!/);
+  url = url.replaceAll("*", "%");
   url = decodeURIComponent(url);
   const decBytes = decodeEncBytes(encBytes);
   url = substituteTokens(url, decBytes);
