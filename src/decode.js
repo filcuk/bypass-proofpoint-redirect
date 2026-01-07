@@ -20,6 +20,7 @@ export function decodeV2(rewrittenUrl) {
 
 export function decodeV3(rewrittenUrl) {
   let [_, url, encBytes] = rewrittenUrl.match(/v3\/__(.+?)__;(.*?)!/);
+  url = url.replaceAll("*", "%");
   url = decodeURIComponent(url);
   const decBytes = decodeEncBytes(encBytes);
   url = substituteTokens(url, decBytes);
